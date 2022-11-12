@@ -71,7 +71,7 @@ export default App;
 
 ```
 
-### sec/components/navbar.tsx作成
+### src/components/navbar.tsx作成
 
 ```typescript
 import { Link } from "react-router-dom";
@@ -100,6 +100,90 @@ import {Navbar} from "./components/navbar";// ← 行追加
         <Navbar />　 {/* ← 行追加 */}
         <Routes>
 〜　省略　〜
+```
+
+### firebaseのインストール
+
+```zsh
+% npm install firebase
+```
+
+### src/config/firebase.tsの作成
+
+firebaseの[サイト](https://firebase.google.com/)で作成したプロジェクト（ここではreact-course）の「全般」タブに記載されている初期化プログラムをコピペする
+
+```typescript
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCVx1PogaFYEu95lm17HlODC9kz1B1Y5Pg",
+  authDomain: "react-cours-cd049.firebaseapp.com",
+  projectId: "react-cours-cd049",
+  storageBucket: "react-cours-cd049.appspot.com",
+  messagingSenderId: "782991039854",
+  appId: "1:782991039854:web:e21e1baac45060723e357f"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+```
+
+### firebaseをインストール
+
+```zsh
+% npm install firebase
+```
+
+### firebaseでAuthenticationを設定する
+
+[動画のここ](https://youtu.be/f55qeKGgB_M?t=20875)を参考にし、新たなAuth（ユーザー認証）を作成する。
+
+### src/config/firebase.ts編集（行追加）
+
+```typescript
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth"; //行追加
+
+〜中略〜
+
+export const auth = getAuth(app);                 //行追加
+export const provider = new GoogleAuthProvider(); //行追加
+```
+
+### src/pages/login.tsxを編集
+
+```typescript
+import { auth, provider } from "../config/firebase";
+import { signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
+export const Login = () => {
+  const navigate = useNavigate();
+
+  const signInWithGoogle = async () => {
+    const result = await signInWithPopup(auth, provider);
+    console.log(result);
+    navigate("/");
+  };
+
+  return (
+    <div>
+      <p>Sigh In With Google to Continue </p>
+      <button onClick={signInWithGoogle}> Sign In With Google</button>
+    </div>
+  );
+};
+
+```
+
+### src/components/navbar.tsx追加編集
+
+```typescript
+
 ```
 
 ## Getting Started with Create React App
