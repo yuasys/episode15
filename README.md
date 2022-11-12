@@ -102,12 +102,6 @@ import {Navbar} from "./components/navbar";// ← 行追加
 〜　省略　〜
 ```
 
-### firebaseのインストール
-
-```zsh
-% npm install firebase
-```
-
 ### src/config/firebase.tsの作成
 
 firebaseの[サイト](https://firebase.google.com/)で作成したプロジェクト（ここではreact-course）の「全般」タブに記載されている初期化プログラムをコピペする
@@ -201,6 +195,20 @@ export const Navbar = () => {
     </div>
   );
 };
+```
+
+### react-firebase-hooksモジュールをインストール
+
+```zsh
+% npm install react-firebase-hooks
+```
+
+### navbar.tsxを再編集
+
+useAuthStateを使えるよに追加編集する
+
+```typescript
+
 ```
 
 ## Getting Started with Create React App
