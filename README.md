@@ -10,6 +10,97 @@
 
 留意点：カレントディレクトリ内のファイルはすべて削除しておかないとエラーになります。
 
+### ひな形から不要ファイルを削除する
+
+削除するファイル
+src/App.test.tsx  
+src/index.css  
+src/logo.svg  
+src/reportWebVitals.ts
+src/setupTests.ts
+
+### 不要な行を削除する
+
+※詳細は[動画](https://youtu.be/f55qeKGgB_M?t=19832)を参照  
+対象ファイル:src/index.tsx, App.tsx
+
+### react-router-domモジュールをインストール
+
+```zsh
+% npm install react-router-dom
+```
+
+### src/pages/main.tsx作成
+
+```typescript
+export const Main = () => {
+  return <div>Home Page</div>
+}
+```
+
+### src/pages/login.tsx作成
+
+```typescript
+export const Login = () => {
+  return <div>Login Page</div>
+}
+```
+
+### App.tsx編集
+
+```typescript
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import { Main } from "./pages/main";
+import { Login } from "./pages/login";
+
+function App() {
+  return (
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+    </div>);
+}
+
+export default App;
+
+```
+
+### sec/components/navbar.tsx作成
+
+```typescript
+import { Link } from "react-router-dom";
+
+export const Navbar = () => {
+  return (
+  <div>
+    <Link to="/"> Home </Link>  
+    <Link to="/login"> Login </Link>  
+  </div>
+  );
+};
+```
+
+### App.tsxにNavbarを追加編集
+
+```typescript
+
+〜　省略　〜
+
+import {Navbar} from "./components/navbar";// ← 行追加
+
+〜　省略　〜
+
+      <Router>
+        <Navbar />　 {/* ← 行追加 */}
+        <Routes>
+〜　省略　〜
+```
 
 ## Getting Started with Create React App
 
