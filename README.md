@@ -207,9 +207,12 @@ export const Navbar = () => {
 
 useAuthStateを使えるよに追加編集する
 
-```typescript
+【以降、動画教材に従ってしばらくコーディングを続けること】
 
-```
+### Form関連のモジュールを一括インストールする
+
+```zsh
+% npm install react-hook-form yup @hookform/resolvers
 
 ## Getting Started with Create React App
 
