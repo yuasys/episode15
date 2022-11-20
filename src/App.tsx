@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Main } from "./pages/main";
+import { Main } from "./pages/main/main";
 import { Login } from "./pages/login";
-import {Navbar} from "./components/navbar";
+import { Navbar } from "./components/navbar";
 import { CreatePost } from "./pages/create-post/create-post";
 
 function App() {
@@ -11,13 +11,14 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-        <Routes> 
+        <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/createpost" element={<CreatePost />} />
         </Routes>
       </Router>
-    </div>);
+    </div>
+  );
 }
 
 export default App;
